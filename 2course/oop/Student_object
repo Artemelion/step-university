@@ -1,0 +1,163 @@
+#include <iostream>
+using namespace std;
+
+/*
+Реализуйте класс “Студент”. Необходимо хранить в переменных-членах класса: 
+ФИО, дату рождения, контактный телефон, город, страну, название учебного заведения, 
+город и страну (где находится учебное заведение), номер группы. 
+Реализуйте функции-члены класса для ввода данных, вывода данных, 
+реализуйте аксессоры для доступа к отдельным переменным-членам.
+
+*/
+
+class Student
+{
+private:
+	char* name, * surname, * patronymic, * birthday, * telephoneNumber, * city, * country, * nameOfUniversity, * cityUniversity, * countryUniversity;
+	int age, group;
+
+public:
+	void Print()
+	{
+		cout << "Name: " << name << "Surname: " << surname << "Patronymic: " 
+			<< patronymic << "\n Birthday: " << birthday << "\tAge: " << age << "\nTelephone number: "
+			<< telephoneNumber << "\ncity: " << city << "\tcountry: " << country 
+			<< "\n University Name: " << nameOfUniversity << "\t its city: " << cityUniversity 
+			<< "\t its country:" << countryUniversity << "\nEducation group:" << group << endl;
+	}
+	void Init(const char* n, const char* s, const char* p, const char* hb, const char* t, const char* c, const char* cntry, const char* nou, const char* cou, const char* countryUni, int a, int b) // Oleg, 18
+	{
+		name = new char[strlen(n) + 1];
+		strcpy_s(name, strlen(n) + 1, n); // name 
+
+		surname = new char[strlen(s)+1]; 
+		strcpy_s(surname, strlen(s) + 1, s); // surname
+
+		patronymic = new char[strlen(p) + 1];
+		strcpy_s(surname, strlen(p) + 1, p); // patronymic
+
+		birthday = new char[strlen(hb) + 1];
+		strcpy_s(birthday, strlen(hb) + 1, hb); // birthday
+
+		telephoneNumber = new char[strlen(t) + 1];
+		strcpy_s(telephoneNumber, strlen(t) + 1, t); // telephoneNumber
+
+		city = new char[strlen(c) + 1];
+		strcpy_s(city, strlen(c) + 1, c); // city
+
+		country = new char[strlen(cntry) + 1];
+		strcpy_s(country, strlen(cntry) + 1, cntry); // country
+
+		nameOfUniversity = new char[strlen(nou) + 1];
+		strcpy_s(nameOfUniversity, strlen(nou) + 1, nou); // nameOfUniversity
+
+		cityUniversity = new char[strlen(cou) + 1];
+		strcpy_s(cityUniversity, strlen(cou) + 1, cou); // cityUniversity
+
+		countryUniversity = new char[strlen(countryUni) + 1];
+		strcpy_s(countryUniversity, strlen(countryUni) + 1, countryUni); // countryUniversity
+
+		age = a;
+		group = b;
+	}
+
+	void MyDelete() // так как указатель на нейм - инкапсулирован, мы вынуждены создавать отдельный метод. 
+	{
+		delete[] name, surname, patronymic, birthday, telephoneNumber, city, country, nameOfUniversity, cityUniversity, countryUniversity;
+	}
+
+	// Аксессоры
+	const char* GetName() { return name; }
+	const char* GetSurname() { return surname; }
+	const char* GetPatronymic() { return patronymic; }
+	const char* GetBirthday() { return birthday; }
+	const char* GetTelephoneNumber() { return telephoneNumber; }
+	const char* GetCity() { return city; }
+	const char* GetCountry() { return country; }
+	const char* GetNameOfUniversity() { return nameOfUniversity; }
+	const char* GetCityUniversity() { return cityUniversity; }
+	const char* GetCountryUniversity() { return countryUniversity; }
+	int GetAge() { return age; }
+	int GetGroup() { return group; }
+
+	// Сеттеры
+	void SetName(const char* n)
+	{
+		delete[] name; // удаляем старую память
+		name = new char[strlen(n) + 1];
+		strcpy_s(name, strlen(n) + 1, n);
+	}
+	void SetSurname(const char* s)
+	{
+		delete[] surname; // удаляем старую память
+		surname = new char[strlen(s) + 1];
+		strcpy_s(surname, strlen(s) + 1, s);
+	}
+	void SetPatronymic(const char* p)
+	{
+		delete[] patronymic; // удаляем старую память
+		patronymic = new char[strlen(p) + 1];
+		strcpy_s(patronymic, strlen(p) + 1, p);
+	}
+	void SetBirthday(const char* hb)
+	{
+		delete[] birthday; // удаляем старую память
+		birthday = new char[strlen(hb) + 1];
+		strcpy_s(birthday, strlen(hb) + 1, hb);
+	}
+	void SetTelephoneNumber(const char* t)
+	{
+		delete[] telephoneNumber; // удаляем старую память
+		telephoneNumber = new char[strlen(t) + 1];
+		strcpy_s(telephoneNumber, strlen(t) + 1, t);
+	}
+	void SetCity(const char* c)
+	{
+		delete[] city; // удаляем старую память
+		city = new char[strlen(c) + 1];
+		strcpy_s(city, strlen(c) + 1, c);
+	}
+	void SetCountry(const char* cntry)
+	{
+		delete[] country; // удаляем старую память
+		country = new char[strlen(cntry) + 1];
+		strcpy_s(country, strlen(cntry) + 1, cntry);
+	}
+	void SetNameOfUniversity(const char* nou)
+	{
+		delete[] nameOfUniversity; // удаляем старую память
+		nameOfUniversity = new char[strlen(nou) + 1];
+		strcpy_s(nameOfUniversity, strlen(nou) + 1, nou);
+	}
+	void SetCityUniversity(const char* cou)
+	{
+		delete[] cityUniversity; // удаляем старую память
+		cityUniversity = new char[strlen(cou) + 1];
+		strcpy_s(cityUniversity, strlen(cou) + 1, cou);
+	}
+	void SetCountryUniversity(const char* countryUni)
+	{
+		delete[] countryUniversity; // удаляем старую память
+		countryUniversity = new char[strlen(countryUni) + 1];
+		strcpy_s(countryUniversity, strlen(countryUni) + 1, countryUni);
+	}
+	void SetAge(int a) { age = a; }
+	void SetGroup(int b) { group = b; }
+};
+
+int main()
+{
+	Student Artyom;
+	Artyom.Init("Artyom", "Morar", "Evhenovich", "18.12.2004", "+38 096 07 07 437", "Odessa", "Ukraine", "ITSTEP University", "Odessa", "Ukraine", 20, 241);
+	Artyom.Print();
+
+
+	cout << "GetName: " << Artyom.GetName() << endl;
+	cout << "SetName to Oleg" << endl;
+	Artyom.SetName("Oleg");
+
+	Artyom.MyDelete();
+//	Artyom.Print(); // мусор.
+
+	return 0;
+}

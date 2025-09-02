@@ -63,7 +63,16 @@ public:
 
 	void MyDelete() // так как указатель на нейм - инкапсулирован, мы вынуждены создавать отдельный метод. 
 	{
-		delete[] name, surname, patronymic, birthday, telephoneNumber, city, country, nameOfUniversity, cityUniversity, countryUniversity;
+		delete[] name;
+		delete[] surname;
+		delete[] patronymic;
+		delete[] birthday;
+		delete[] telephoneNumber;
+		delete[] city;
+		delete[] country;
+		delete[] nameOfUniversity;
+		delete[] cityUniversity;
+		delete[] countryUniversity;
 	}
 
 	// Аксессоры

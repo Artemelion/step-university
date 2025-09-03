@@ -119,3 +119,54 @@ public:
         }
         model = new char[strlen(m) + 1];
         strcpy_s(model, strlen(m) + 1, m);
+    }
+    void SetCountry(const char* ctry)
+    {
+        if (country != nullptr)
+        {
+            delete[] country;
+        }
+        country = new char[strlen(ctry) + 1];
+        strcpy_s(country, strlen(ctry) + 1, ctry);
+    }
+    void SetColor(const char* clr)
+    {
+        if (color != nullptr)
+        {
+            delete[] color;
+        }
+        color = new char[strlen(clr) + 1];
+        strcpy_s(color, strlen(clr) + 1, clr);
+    }
+    void SetYear(int y)
+    {
+        year = y;
+    }
+    void SetPrice(double p)
+    {
+        price = p;
+    }
+
+
+    ~Car()
+    {
+        cout << "Destructor \n";
+        delete[] model;
+        delete[] country;
+        delete[] color;
+    }
+};
+
+
+int main()
+{
+    Car objCar1; // конструктор по умолчанию
+    objCar1.Init("Toyota Corolla", "Japan", "Black", 2020, 25600.0);
+    objCar1.Print();
+
+    Car objCar2("Toyota Corolla", "Japan", "Black", 2020, 25600.0); // конструктор с параметрами
+    objCar2.Print();
+
+
+    return 0;
+}

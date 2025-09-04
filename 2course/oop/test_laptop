@@ -1,0 +1,197 @@
+#include<iostream>
+using namespace std;
+
+class Laptop
+{
+private:
+    char* model, * color;
+    double size, price;
+public:
+
+    void GetModel();
+    void GetColor();
+    int GetSize();
+    int GetPrice();
+
+    Laptop(); // конструктор по умолчанию.
+    Laptop(const char* s);
+    Laptop(int a, const char* s);
+    // конструктор с максимальным количеством параметров - главный конструктор класса
+    Laptop(const char* n, int a, const char* s);
+
+    void Print();
+    void Init(const char* n, int a, const char* s); // Oleg, 18
+
+    //ввод с клавиатуры (cin);
+    void Init()
+    {
+        char buf[100];
+		cout << "Enter model: "; cin >> buf;
+		SetModel(buf);
+		cout << "Enter color: "; cin >> buf;
+		SetColor(buf);
+		cout << "Enter size: "; cin >> size;
+		cout << "Enter price: "; cin >> price;
+    }
+
+    ~Laptop(); // destructor
+
+
+    void SetModel(const char* n);
+    void SetColor(const char* s);
+    void SetSize(int a);
+    void SetPrice(int a);
+
+};
+
+void Laptop::GetModel()
+{
+        if (model != nullptr)
+        {
+            cout << model << endl;
+        }
+        else
+        {
+            cout << "Name is nullptr\n";
+        }
+}
+void Laptop::GetColor()
+{
+    if (color != nullptr)
+    {
+        cout << color << endl;
+    }
+    else
+    {
+        cout << "Surname is nullptr\n";
+    }
+}
+int Laptop::GetSize()
+{
+    if (size > 0.0)
+    {
+        return size;
+    }
+    else
+    {
+        cout << "Age is incorrect\n";
+        return 0;
+    }
+}
+int Laptop::GetPrice()
+{
+    if (price > 0)
+    {
+        return price;
+    }
+    else
+    {
+        cout << "Age is incorrect\n";
+        return 0;
+    }
+}
+
+
+
+
+Laptop::Laptop()
+{
+    model = color = nullptr;
+    size = 0.0;
+    price = 0.0;
+    cout << "Constructor by default\n";
+
+}
+Laptop::Laptop(const char* s)
+{
+    color = new char[strlen(s) + 1];
+    strcpy_s(color, strlen(s) + 1, s);
+    cout << "Constructor by params: Surname\n";
+}
+Laptop::Laptop(int a, const char* s) :Laptop(s) // делегирование конструктора
+{
+    size = a;
+    cout << "Constructor by params: Age\n";
+}
+Laptop::Laptop(const char* n, int a, const char* s) :Laptop(a, s)
+{
+    model = new char[strlen(n) + 1];
+    strcpy_s(model, strlen(n) + 1, n);
+    cout << "Constructor by params\n";
+}
+void Laptop::Print()
+{
+    cout << "Name: " << model << "\tAge: " << size << "surname: " << color << endl;
+}
+
+void Laptop::Init(const char* n, int a, const char* s)
+{
+    if (model != nullptr) // если в name адрес участка в куче 
+    {
+        delete[]model; // удаляем
+    }
+    model = new char[strlen(n) + 1];
+    strcpy_s(model, strlen(n) + 1, n);
+
+    size = a;
+
+    if (color != nullptr) // если в name адрес участка в куче 
+    {
+        delete[]color; // удаляем
+    }
+    color = new char[strlen(s) + 1];
+    strcpy_s(model, strlen(s) + 1, s);
+
+}
+
+Laptop::~Laptop()
+{
+    {
+        cout << "Destructor \n";
+        delete[] model;
+        delete[] color;
+    }
+}
+
+void Laptop::SetModel(const char* n)
+{
+    if (model != nullptr) // если в name адрес участка в куче 
+    {
+        delete[]model; // удаляем
+    }
+    model = new char[strlen(n) + 1];
+    strcpy_s(model, strlen(n) + 1, n);
+}
+void Laptop::SetColor(const char* s)
+{
+    if (color != nullptr) // если в name адрес участка в куче 
+    {
+        delete[]color; // удаляем
+    }
+    color = new char[strlen(s) + 1];
+    strcpy_s(color, strlen(s) + 1, s);
+}
+void Laptop::SetSize(int a)
+{
+    size = a;
+}
+void Laptop::SetPrice(int a)
+{
+    price = a;
+}
+
+
+
+int main() // клиент
+{
+
+    //Student obj1; // вызов конструктора по умолчанию.
+    //obj1.Init("Oleg", 18);
+    //obj1.Print();
+
+    //Student obj2{ "Irina", 20 }; // вызов конструктора с параметрами 
+    //obj2.Init("Aleksandr", 19);
+    //obj2.Print();
+
+    return 0;
+}

@@ -23,16 +23,8 @@ public:
     void Init(const char* n, int a, const char* s); // Oleg, 18
 
     //ввод с клавиатуры (cin);
-    void Init()
-    {
-        char buf[100];
-		cout << "Enter model: "; cin >> buf;
-		SetModel(buf);
-		cout << "Enter color: "; cin >> buf;
-		SetColor(buf);
-		cout << "Enter size: "; cin >> size;
-		cout << "Enter price: "; cin >> price;
-    }
+    void Init();
+
 
     ~Laptop(); // destructor
 
@@ -142,6 +134,17 @@ void Laptop::Init(const char* n, int a, const char* s)
     color = new char[strlen(s) + 1];
     strcpy_s(model, strlen(s) + 1, s);
 
+}
+
+void Laptop::Init()
+{
+    char buf[100];
+    cout << "Enter model: "; cin >> buf;
+    SetModel(buf);
+    cout << "Enter color: "; cin >> buf;
+    SetColor(buf);
+    cout << "Enter size: "; cin >> size;
+    cout << "Enter price: "; cin >> price;
 }
 
 Laptop::~Laptop()
